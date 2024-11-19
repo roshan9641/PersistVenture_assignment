@@ -1,0 +1,330 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* General Styles */
+body {
+    font-family: "Roboto", sans-serif;
+    margin: 0;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    transition: background 0.8s ease, color 0.8s ease;
+    background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+}
+
+/* Navbar container */
+.navbar {
+    width: 20vh;
+    height: 80vh;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, #84fab0, #8fd3f4);
+    border-radius: 0 8px 8px 0;
+    transform: translateX(-170px);  /* Start off-screen */
+    transition: transform 0.4s ease-in-out, background 0.4s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
+}
+
+/* Navbar expands on hover */
+.navbar:hover {
+    transform: translateX(0);  /* Move to full width */
+    box-shadow: 10px 10px #41ffef;
+}
+
+/* Navbar list styles */
+.navbar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.navbar ul li {
+    margin: 15px 0;
+    box-shadow: 10px 5px #41ffef; 
+}
+
+.navbar ul li a {
+    text-decoration: none;
+    color: #410aa7;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    display: block;
+    text-align: center;
+    border-radius: 4px;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+.navbar ul li a:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1); 
+}
+
+/* Section styles */
+.section {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    scroll-snap-align: start;
+    transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+}
+
+/* Title and content should shift when navbar opens */
+.section.open {
+    margin-left: 20vh;  /* Push content to the right when navbar is open */
+    transition: margin-left 0.4s ease-out;
+}
+
+/* Background and title effects */
+.section .title {
+    flex: 1;
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    font-weight: bold;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(14, 187, 255, 0.1);
+    border-radius: 8px;
+    opacity: 0;  /* Initially hidden */
+    transform: translateX(-50px);  /* Initially off-screen */
+    animation: slideInLeft 1s ease-in-out forwards;
+}
+
+p {
+   width: 80%;
+   padding-left: 20%;
+}
+
+h1 {
+    font-family: "Roboto", sans-serif;
+    font-size: 50px;
+    text-shadow: 10px 5px 10px #999494;
+}
+
+/* Content animation for paragraphs */
+.section .content {
+    font-weight: bold;
+    font-family: "Roboto", sans-serif;
+    flex: 2;
+    font-size: 1.4rem;
+    color: #555;
+    line-height: 1.8;
+    padding: 20px;
+    text-align: justify;
+    opacity: 0;  /* Initially hidden */
+    transform: translateY(30px);  /* Start from below */
+    transition: opacity 1s ease-out, transform 1s ease-out; /* Smooth transition */
+}
+
+/* Apply the 'animate' class to trigger paragraph animation */
+.section .content.animate {
+    opacity: 1; /* Fade-in */
+    transform: translateY(0); /* Slide-up */
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 15%;
+    height: 15%;
+    padding: 10px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 20px auto 0;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    display: block;
+    position: relative;
+    animation: fadeIn 1.5s ease;
+}
+
+/* Home section */
+#home {
+    display: flex;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-align: center;
+}
+
+.contents h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 2.5rem;
+    color: #333;
+    animation: fadeInUp 1.5s ease-in-out, slideInUp 1s ease-in-out;
+}
+
+/* Define animations */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Buttons and links hover effect */
+a {
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #000;
+    text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.section .content.animate {
+    opacity: 1; /* Fade-in */
+    transform: translateY(0); /* Slide-up */
+}
+
+/* Media Queries for responsiveness */
+
+/* Mobile Devices */
+@media (max-width: 768px) {
+    /* Navbar */
+    .navbar {
+        width: 50vw;
+        height: auto;
+        top: 50px;
+        transform: translateX(-100%);  /* Hidden initially */
+    }
+
+    .navbar:hover {
+        transform: translateX(0);  /* Move to full width */
+    }
+
+    .navbar ul li a {
+        font-size: 18px;
+        padding: 15px;
+    }
+
+    /* Sections */
+    .section {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .section.open {
+        margin-left: 0; /* Navbar open should not shift content */
+    }
+
+    .section .title {
+        font-size: 1.5rem;
+        padding: 15px;
+    }
+
+    .section .content {
+        font-size: 1.2rem;
+        padding: 15px;
+    }
+
+    /* Profile picture */
+    .profile-pic {
+        width: 30%;
+        height: auto;
+    }
+
+    /* Home section text */
+    .contents h1 {
+        font-size: 2rem;
+    }
+}
+
+/* Small Screens */
+@media (max-width: 480px) {
+    /* Navbar */
+    .navbar {
+        width: 70vw;
+        height: auto;
+        top: 40px;
+    }
+
+    .navbar ul li a {
+        font-size: 16px;
+        padding: 12px;
+    }
+
+    /* Sections */
+    .section .title {
+        font-size: 1.3rem;
+        padding: 10px;
+    }
+
+    .section .content {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    /* Profile picture */
+    .profile-pic {
+        width: 40%;
+        height: auto;
+    }
+
+    /* Home section text */
+    .contents h1 {
+        font-size: 1.5rem;
+    }
+}
